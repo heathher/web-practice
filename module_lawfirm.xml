@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_lawfirm" default="compile.module.lawfirm">
+  <dirname property="module.lawfirm.basedir" file="${ant.file.module_lawfirm}"/>
+  
+  <property name="module.jdk.home.lawfirm" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.lawfirm" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.lawfirm" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.lawfirm" value="-encoding UTF-8 -source 1.5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="lawfirm.output.dir" value="${module.lawfirm.basedir}/target/classes"/>
+  <property name="lawfirm.testoutput.dir" value="${module.lawfirm.basedir}/target/test-classes"/>
+  
+  <path id="lawfirm.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="lawfirm.module.production.classpath">
+    <path refid="${module.jdk.classpath.lawfirm}"/>
+    <path refid="library.hibernate_5.2.14-5.2.14.classpath"/>
+  </path>
+  
+  <path id="lawfirm.runtime.production.module.classpath">
+    <pathelement location="${lawfirm.output.dir}"/>
+    <path refid="library.hibernate_5.2.14-5.2.14.classpath"/>
+  </path>
+  
+  <path id="lawfirm.module.classpath">
+    <path refid="${module.jdk.classpath.lawfirm}"/>
+    <pathelement location="${lawfirm.output.dir}"/>
+    <path refid="library.hibernate_5.2.14-5.2.14.classpath"/>
+  </path>
+  
+  <path id="lawfirm.runtime.module.classpath">
+    <pathelement location="${lawfirm.testoutput.dir}"/>
+    <pathelement location="${lawfirm.output.dir}"/>
+    <path refid="library.hibernate_5.2.14-5.2.14.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.lawfirm">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.lawfirm">
+    <patternset refid="excluded.from.module.lawfirm"/>
+  </patternset>
+  
+  <path id="lawfirm.module.sourcepath">
+    <dirset dir="${module.lawfirm.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="lawfirm.module.test.sourcepath">
+    <dirset dir="${module.lawfirm.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.lawfirm" depends="compile.module.lawfirm.production,compile.module.lawfirm.tests" description="Compile module lawfirm"/>
+  
+  <target name="compile.module.lawfirm.production" depends="register.custom.compilers" description="Compile module lawfirm; production classes">
+    <mkdir dir="${lawfirm.output.dir}"/>
+    <javac2 destdir="${lawfirm.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.lawfirm}/javac">
+      <compilerarg line="${compiler.args.lawfirm}"/>
+      <bootclasspath refid="lawfirm.module.bootclasspath"/>
+      <classpath refid="lawfirm.module.production.classpath"/>
+      <src refid="lawfirm.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.lawfirm"/>
+    </javac2>
+    
+    <copy todir="${lawfirm.output.dir}">
+      <fileset dir="${module.lawfirm.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lawfirm.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.lawfirm.tests" depends="register.custom.compilers,compile.module.lawfirm.production" description="compile module lawfirm; test classes" unless="skip.tests">
+    <mkdir dir="${lawfirm.testoutput.dir}"/>
+    <javac2 destdir="${lawfirm.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.lawfirm}/javac">
+      <compilerarg line="${compiler.args.lawfirm}"/>
+      <bootclasspath refid="lawfirm.module.bootclasspath"/>
+      <classpath refid="lawfirm.module.classpath"/>
+      <src refid="lawfirm.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.lawfirm"/>
+    </javac2>
+    
+    <copy todir="${lawfirm.testoutput.dir}">
+      <fileset dir="${module.lawfirm.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.lawfirm" description="cleanup module">
+    <delete dir="${lawfirm.output.dir}"/>
+    <delete dir="${lawfirm.testoutput.dir}"/>
+  </target>
+</project>

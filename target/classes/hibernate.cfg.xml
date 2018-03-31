@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+      <property name="connection.username">root</property>
+      <property name="connection.password">external22</property>
+      <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+      <property name="connection.url">jdbc:mysql://localhost:3306/lawfirm</property>
+      <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+      <mapping class="dao.CustomerEntity"/>
+      <!--<mapping resource="dao/res/CustomerEntity.hbm.xml"/>-->
+      <mapping class="dao.EducationEntity"/>
+      <!--<mapping resource="dao/res/EducationEntity.hbm.xml"/>-->
+      <mapping class="dao.EmployeeEntity"/>
+      <!--<mapping resource="dao/res/EmployeeEntity.hbm.xml"/>-->
+      <mapping class="dao.JobEntity"/>
+      <!--<mapping resource="dao/res/JobEntity.hbm.xml"/>-->
+      <mapping class="dao.SalesOrderEntity"/>
+      <!--<mapping resource="dao/res/SalesOrderEntity.hbm.xml"/>-->
+      <mapping class="dao.ServiceEntity"/>
+      <!--<mapping resource="dao/res/ServiceEntity.hbm.xml"/>-->
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

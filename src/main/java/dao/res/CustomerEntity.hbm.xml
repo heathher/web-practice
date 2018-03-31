@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="dao.CustomerEntity" table="customer" schema="lawfirm">
+        <id name="customerId">
+            <column name="customer_id" sql-type="int(4) unsigned"/>
+        </id>
+        <property name="firstName">
+            <column name="first_name" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="lastName">
+            <column name="last_name" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="mail">
+            <column name="mail" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="phone">
+            <column name="phone" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="address">
+            <column name="address" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <set name="salesOrdersByCustomerId" inverse="true">
+            <key>
+                <column name="customer_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="dao.SalesOrderEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>
