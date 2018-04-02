@@ -10,6 +10,13 @@ public class EducationEntity {
     private String grade;
     private Collection<EmployeeEntity> employeesByEducationId;
 
+    public EducationEntity(){}
+
+    public EducationEntity(int educationId, String grade){
+        this.educationId = educationId;
+        this.grade = grade;
+    }
+
     @Id
     @Column(name = "education_id", nullable = false)
     public int getEducationId() {

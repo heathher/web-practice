@@ -10,6 +10,13 @@ public class JobEntity {
     private String function;
     private Collection<EmployeeEntity> employeesByJobId;
 
+    public JobEntity(){}
+
+    public JobEntity(int jobId, String function){
+        this.jobId = jobId;
+        this.function = function;
+    }
+
     @Id
     @Column(name = "job_id", nullable = false)
     public int getJobId() {

@@ -3,8 +3,6 @@ package main;
 import dao.*;
 import dao.implementation.*;
 import dao.interfaces.*;
-import org.hibernate.Session;
-import utils.HibernateSessionFact;
 
 public class Test{
     CustomerEntity customer;
@@ -21,7 +19,7 @@ public class Test{
     SalesOrderInterface sal_i = new SalesOrderImplementation();
     ServiceInterface ser_i = new ServiceImplementation();
 
-    
+
 
 }
 

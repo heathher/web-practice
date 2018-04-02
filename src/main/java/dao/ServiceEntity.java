@@ -11,6 +11,12 @@ public class ServiceEntity {
     private int servicePrice;
     private Collection<SalesOrderEntity> salesOrdersByServiceId;
 
+    public ServiceEntity(){}
+    public ServiceEntity(int serviceId, String serviceName, int servicePrice){
+        this.serviceId = serviceId;
+        this.serviceName = serviceName;
+        this.servicePrice = servicePrice;
+    }
     @Id
     @Column(name = "service_id", nullable = false)
     public int getServiceId() {

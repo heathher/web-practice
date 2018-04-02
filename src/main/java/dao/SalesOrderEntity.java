@@ -1,5 +1,7 @@
 package dao;
 
+import dao.implementation.SalesOrderImplementation;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -11,6 +13,16 @@ public class SalesOrderEntity {
     private CustomerEntity customerByCustomerId;
     private EmployeeEntity employeeByEmployeeId;
     private ServiceEntity serviceByServiceId;
+
+    public SalesOrderEntity(){}
+    public SalesOrderEntity(int id, CustomerEntity customer,
+                            EmployeeEntity employee, ServiceEntity service, Date orderDate){
+        this.id = id;
+        this.orderDate = orderDate;
+        this.customerByCustomerId = customer;
+        this.employeeByEmployeeId = employee;
+        this.serviceByServiceId = service;
+    }
 
     @Id
     @Column(name = "id", nullable = false)

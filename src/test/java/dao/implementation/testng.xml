@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DAO">
+    <test name="Customer">
+        <classes>
+            <class name="dao.implementation.CustomerTest"/>
+        </classes>
+    </test>
+    <test name="Education">
+        <classes>
+            <class name="dao.implementation.EducationTest"/>
+        </classes>
+    </test>
+    <test name="Employee">
+        <classes>
+            <class name="dao.implementation.EmployeeTest"/>
+        </classes>
+    </test>
+    <test name="Job">
+        <classes>
+            <class name="dao.implementation.JobTest"/>
+        </classes>
+    </test>
+    <test name="SalesOrder">
+        <classes>
+            <class name="dao.implementation.SalesOrderTest"/>
+        </classes>
+    </test>
+    <test name="Service">
+        <classes>
+            <class name="dao.implementation.ServiceTest"/>
+        </classes>
+    </test>
+</suite>

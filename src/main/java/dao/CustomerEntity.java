@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "customer", schema = "lawfirm", catalog = "")
+@Table(name = "customer", schema = "lawfirm")
 public class CustomerEntity {
     private int customerId;
     private String firstName;
@@ -14,6 +14,15 @@ public class CustomerEntity {
     private String address;
     private Collection<SalesOrderEntity> salesOrdersByCustomerId;
 
+    public CustomerEntity (){}
+    public CustomerEntity(int customerId, String firstName, String lastName, String mail, String phone, String address){
+        this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mail = mail;
+        this.phone = phone;
+        this.address = address;
+    }
     @Id
     @Column(name = "customer_id", nullable = false)
     public int getCustomerId() {

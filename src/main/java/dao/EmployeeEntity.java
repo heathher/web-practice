@@ -1,5 +1,7 @@
 package dao;
 
+import dao.implementation.EmployeeImplementation;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -15,6 +17,21 @@ public class EmployeeEntity {
     private JobEntity jobByJobId;
     private EducationEntity educationByEducationId;
     private Collection<SalesOrderEntity> salesOrdersByEmployeeId;
+
+    public EmployeeEntity(){}
+
+    public EmployeeEntity(int employeeId, String firstname, String lastname,
+                          String mail, String phone, String address,
+                          JobEntity job, EducationEntity education){
+        this.employeeId = employeeId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.mail = mail;
+        this.phone = phone;
+        this.address = address;
+        this.jobByJobId = job;
+        this.educationByEducationId = education;
+    }
 
     @Id
     @Column(name = "employee_id", nullable = false)
