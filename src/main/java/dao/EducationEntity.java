@@ -37,25 +37,25 @@ public class EducationEntity {
         this.grade = grade;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        EducationEntity that = (EducationEntity) o;
+//
+//        if (educationId != that.educationId) return false;
+//        if (grade != null ? !grade.equals(that.grade) : that.grade != null) return false;
+//
+//        return true;
+//    }
 
-        EducationEntity that = (EducationEntity) o;
-
-        if (educationId != that.educationId) return false;
-        if (grade != null ? !grade.equals(that.grade) : that.grade != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = educationId;
-        result = 31 * result + (grade != null ? grade.hashCode() : 0);
-        return result;
-    }
+//    @Override
+//    public int hashCode() {
+//        int result = educationId;
+//        result = 31 * result + (grade != null ? grade.hashCode() : 0);
+//        return result;
+//    }
 
     @OneToMany(mappedBy = "educationByEducationId")
     public Collection<EmployeeEntity> getEmployeesByEducationId() {

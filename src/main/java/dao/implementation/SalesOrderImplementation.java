@@ -90,37 +90,31 @@ public class SalesOrderImplementation implements SalesOrderInterface {
     public List<SalesOrderEntity> getByFilters(Integer customer_id,
                                                Integer employee_id,
                                                Integer service_id,
-                                               Date order_date) {
+                                               Date beginOrderDate,
+                                               Date endOrderDate) {
         Session session = null;
         List<SalesOrderEntity> result = new ArrayList<SalesOrderEntity>();
         try {
             String hsql_query =
                     "select u " +
                             "from SalesOrderEntity u ";
-            if (customer_id != -1 )
-                hsql_query += ", CustomerEntity c ";
-            if (employee_id != -1)
-                hsql_query += ", EmployeeEntity e ";
-            if (service_id != -1)
-                hsql_query += ", ServiceEntity s ";
-
-            if (order_date != null)
-                hsql_query += "where u.odrer_date like '%' || :order_date || '%' ";
-            else
-                hsql_query += "where 1 = 1 ";
             if (customer_id != -1)
-                hsql_query += "and u.customer_id = c.customer_id";
+                hsql_query += " where u.customerByCustomerId.customerId = " +  customer_id ;
+            else
+                hsql_query += " where 1 = 1 ";
             if (employee_id != -1)
-                hsql_query += "and u.employee_id = e.employee_id";
+                hsql_query += " and u.employeeByEmployeeId.employeeId = " + employee_id ;
             if (service_id != -1)
-                hsql_query += "and u.service_id = s.service_id";
+                hsql_query += " and u.serviceByServiceId.serviceId = " + service_id ;
+            if (beginOrderDate != null && endOrderDate != null) {
+                hsql_query += " and u.orderDate > '' || :beginOrderDate || '' ";
+                hsql_query += " and u.orderDate < '' || :endOrderDate || '' ";
+            }
 
             session = HibernateSessionFact.getSessionFactory().openSession();
             session.beginTransaction();
             Query query = session.createQuery(hsql_query);
 
-            if (order_date != null)
-                query.setDate("order_date", order_date);
 
             System.out.println("query: " + hsql_query);
             result = query.list();

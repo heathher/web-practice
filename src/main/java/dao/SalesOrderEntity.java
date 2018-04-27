@@ -16,13 +16,15 @@ public class SalesOrderEntity {
 
     public SalesOrderEntity(){}
     public SalesOrderEntity(int id, CustomerEntity customer,
-                            EmployeeEntity employee, ServiceEntity service, Date orderDate){
+                            EmployeeEntity employee, ServiceEntity service,
+                            Date orderDate){
         this.id = id;
         this.orderDate = orderDate;
         this.customerByCustomerId = customer;
         this.employeeByEmployeeId = employee;
         this.serviceByServiceId = service;
     }
+
 
     @Id
     @Column(name = "id", nullable = false)
@@ -44,25 +46,25 @@ public class SalesOrderEntity {
         this.orderDate = orderDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SalesOrderEntity that = (SalesOrderEntity) o;
-
-        if (id != that.id) return false;
-        if (orderDate != null ? !orderDate.equals(that.orderDate) : that.orderDate != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
-        return result;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        SalesOrderEntity that = (SalesOrderEntity) o;
+//
+//        if (id != that.id) return false;
+//        if (orderDate != null ? !orderDate.equals(that.orderDate) : that.orderDate != null) return false;
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = id;
+//        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
+//        return result;
+//    }
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)

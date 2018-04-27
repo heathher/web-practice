@@ -31,4 +31,9 @@
             <class name="dao.implementation.ServiceTest"/>
         </classes>
     </test>
+    <test name="Main">
+        <classes>
+            <class name="dao.implementation.TestMain"/>
+        </classes>
+    </test>
 </suite>
