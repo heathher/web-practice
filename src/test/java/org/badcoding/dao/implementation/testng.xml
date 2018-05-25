@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DAO">
+    <test name="Customer">
+        <classes>
+            <class name="org.badcoding.dao.implementation.CustomerTest"/>
+        </classes>
+    </test>
+    <test name="Education">
+        <classes>
+            <class name="org.badcoding.dao.implementation.EducationTest"/>
+        </classes>
+    </test>
+    <test name="Employee">
+        <classes>
+            <class name="org.badcoding.dao.implementation.EmployeeTest"/>
+        </classes>
+    </test>
+    <test name="Job">
+        <classes>
+            <class name="org.badcoding.dao.implementation.JobTest"/>
+        </classes>
+    </test>
+    <test name="SalesOrder">
+        <classes>
+            <class name="org.badcoding.dao.implementation.SalesOrderTest"/>
+        </classes>
+    </test>
+    <test name="Service">
+        <classes>
+            <class name="org.badcoding.dao.implementation.ServiceTest"/>
+        </classes>
+    </test>
+    <test name="Main">
+        <classes>
+            <class name="org.badcoding.dao.implementation.TestMain"/>
+        </classes>
+    </test>
+</suite>

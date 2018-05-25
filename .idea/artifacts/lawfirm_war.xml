@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="lawfirm:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="Lawfirm-1.1.0.BUILD-SNAPSHOT.war">
+      <element id="artifact" artifact-name="lawfirm:war exploded" />
+    </root>
+  </artifact>
+</component>

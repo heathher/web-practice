@@ -48,8 +48,8 @@
   
   <path id="lawfirm.module.sourcepath">
     <dirset dir="${module.lawfirm.basedir}">
-      <include name="src/main/java"/>
-      <include name="src/main/resources"/>
+      <include name="src/org.badcoding.main/java"/>
+      <include name="src/org.badcoding.main/resources"/>
     </dirset>
   </path>
   
@@ -73,11 +73,11 @@
     </javac2>
     
     <copy todir="${lawfirm.output.dir}">
-      <fileset dir="${module.lawfirm.basedir}/src/main/java">
+      <fileset dir="${module.lawfirm.basedir}/src/org.badcoding.main/java">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
-      <fileset dir="${module.lawfirm.basedir}/src/main/resources">
+      <fileset dir="${module.lawfirm.basedir}/src/org.badcoding.main/resources">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
       </fileset>
