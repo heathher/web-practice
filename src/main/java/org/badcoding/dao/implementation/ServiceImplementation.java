@@ -5,8 +5,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.badcoding.utils.HibernateSessionFact;
 import org.badcoding.dao.ServiceEntity;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class ServiceImplementation implements ServiceInterface{
     public void save(ServiceEntity service) {
         Session session = null;

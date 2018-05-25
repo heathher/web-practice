@@ -7,9 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-
-public class HibernateSessionFact
-{
+public class HibernateSessionFact {
     private static SessionFactory sessionFactory;
     private static ServiceRegistry serviceRegistry;
 

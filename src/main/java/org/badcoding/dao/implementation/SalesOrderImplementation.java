@@ -5,11 +5,13 @@ import org.badcoding.dao.interfaces.SalesOrderInterface;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.badcoding.utils.HibernateSessionFact;
+import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class SalesOrderImplementation implements SalesOrderInterface {
     public void save(SalesOrderEntity salesorder) {
         Session session = null;

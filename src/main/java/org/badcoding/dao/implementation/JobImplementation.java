@@ -5,8 +5,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.badcoding.utils.HibernateSessionFact;
 import org.badcoding.dao.JobEntity;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class JobImplementation implements JobInterface{
     public void save(JobEntity job) {
         Session session = null;

@@ -5,9 +5,11 @@ import org.badcoding.dao.interfaces.EmployeeInterface;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.badcoding.utils.HibernateSessionFact;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class EmployeeImplementation implements EmployeeInterface{
     public void save(EmployeeEntity employee) {
         Session session = null;

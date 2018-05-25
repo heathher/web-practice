@@ -6,8 +6,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.badcoding.utils.HibernateSessionFact;
 import org.badcoding.dao.EducationEntity;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class EducationImplementation implements EducationInterface{
     public void save(EducationEntity education) {
         Session session = null;
