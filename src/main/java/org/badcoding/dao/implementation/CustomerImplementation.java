@@ -71,6 +71,26 @@ public class CustomerImplementation implements CustomerInterface{
                 session.close();
             }
         }
+    }
+    public CustomerEntity getByName(String name) {
+        Session session = null;
+        try {
+            session = HibernateSessionFact.getSessionFactory().openSession();
+            //session.beginTransaction();
+            Query query = session.createQuery("select distinct customer "
+                    + "from CustomerEntity customer "
+                    + "where customer.lastName = :last_name");
+            query.setParameter("last_name", name);
+            //session.getTransaction().commit();
+            if (query.list().size() == 0){
+                return null;
+            }
+            return (CustomerEntity)query.list().get(0);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
 
     }
     public List<CustomerEntity> getList() {

@@ -27,6 +27,7 @@ public class CustomerEntity {
 
     @Id
     @Column(name = "customer_id", nullable = false)
+    @GeneratedValue
     public int getCustomerId() {
         return customerId;
     }

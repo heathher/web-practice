@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Map;
 
 @Controller
-public class MainController {
+public class IndexController {
     @RequestMapping("/")
     public String root(Map<String, Object> model) {
-        return "redirect:/start";
+        return "redirect:/main/start";
     }
 }

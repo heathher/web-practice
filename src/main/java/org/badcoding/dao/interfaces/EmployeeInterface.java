@@ -8,5 +8,6 @@ public interface EmployeeInterface {
     void update(EmployeeEntity employee);
     void delete(EmployeeEntity employee);
     EmployeeEntity getById(int id);
+    EmployeeEntity getByName(String name);
     List<EmployeeEntity> getList();
 }

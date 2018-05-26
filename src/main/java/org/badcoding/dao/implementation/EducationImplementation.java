@@ -72,6 +72,26 @@ public class EducationImplementation implements EducationInterface{
             }
         }
     }
+    public EducationEntity getByName(String name) {
+        Session session = null;
+        try {
+            session = HibernateSessionFact.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query query = session.createQuery("select distinct education "
+                    + "from EducationEntity education "
+                    + "where education.grade = :grade");
+            query.setParameter("grade", name);
+            session.getTransaction().commit();
+            if (query.list().size() == 0){
+                return null;
+            }
+            return (EducationEntity)query.list().get(0);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
     public List<EducationEntity> getList() {
         Session session = null;
         try {

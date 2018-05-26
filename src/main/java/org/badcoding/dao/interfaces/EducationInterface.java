@@ -9,5 +9,6 @@ public interface EducationInterface {
     void update(EducationEntity education);
     void delete(EducationEntity education);
     EducationEntity getById(int id);
+    EducationEntity getByName(String name);
     List<EducationEntity> getList();
 }

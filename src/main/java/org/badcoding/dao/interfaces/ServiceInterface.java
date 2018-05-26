@@ -9,5 +9,6 @@ public interface ServiceInterface {
     void update(ServiceEntity service);
     void delete(ServiceEntity service);
     ServiceEntity getById(int id);
+    ServiceEntity getByName(String name);
     List<ServiceEntity> getList();
 }

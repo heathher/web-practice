@@ -19,6 +19,7 @@ public class ServiceEntity {
     }
     @Id
     @Column(name = "service_id", nullable = false)
+    @GeneratedValue
     public int getServiceId() {
         return serviceId;
     }

@@ -9,5 +9,6 @@ public interface JobInterface {
     void update(JobEntity job);
     void delete(JobEntity job);
     JobEntity getById(int id);
+    JobEntity getByName(String name);
     List<JobEntity> getList();
 }

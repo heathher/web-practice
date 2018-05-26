@@ -71,6 +71,26 @@ public class JobImplementation implements JobInterface{
             }
         }
     }
+    public JobEntity getByName(String name) {
+        Session session = null;
+        try {
+            session = HibernateSessionFact.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query query = session.createQuery("select distinct job "
+                    + "from JobEntity job "
+                    + "where job.function = :function");
+            query.setParameter("function", name);
+            session.getTransaction().commit();
+            if (query.list().size() == 0){
+                return null;
+            }
+            return (JobEntity)query.list().get(0);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
     public List<JobEntity> getList() {
         Session session = null;
         try {

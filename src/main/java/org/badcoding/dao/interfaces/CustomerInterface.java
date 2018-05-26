@@ -9,5 +9,6 @@ public interface CustomerInterface {
     void update(CustomerEntity customer);
     void delete(CustomerEntity customer);
     CustomerEntity getById(int id);
+    CustomerEntity getByName(String name);
     List<CustomerEntity> getList();
 }

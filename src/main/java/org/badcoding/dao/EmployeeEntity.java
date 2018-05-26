@@ -36,6 +36,7 @@ public class EmployeeEntity {
 
     @Id
     @Column(name = "employee_id", nullable = false)
+    @GeneratedValue
     public int getEmployeeId() {
         return employeeId;
     }

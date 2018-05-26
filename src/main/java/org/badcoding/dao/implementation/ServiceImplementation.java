@@ -71,6 +71,26 @@ public class ServiceImplementation implements ServiceInterface{
             }
         }
     }
+    public ServiceEntity getByName(String name) {
+        Session session = null;
+        try {
+            session = HibernateSessionFact.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query query = session.createQuery("select distinct service "
+                    + "from ServiceEntity service "
+                    + "where service.serviceName = :service_name");
+            query.setParameter("service_name", name);
+            session.getTransaction().commit();
+            if (query.list().size() == 0){
+                return null;
+            }
+            return (ServiceEntity)query.list().get(0);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
     public List<ServiceEntity> getList() {
         Session session = null;
         try {

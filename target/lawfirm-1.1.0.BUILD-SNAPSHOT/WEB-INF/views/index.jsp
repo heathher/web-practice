@@ -5,13 +5,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
 </head>
 
 <body>
-
-GJHJHGJHG
 
 <c:if test="${!empty errors}">
     <p>

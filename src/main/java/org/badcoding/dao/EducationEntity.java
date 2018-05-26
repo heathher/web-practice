@@ -19,6 +19,7 @@ public class EducationEntity {
 
     @Id
     @Column(name = "education_id", nullable = false)
+    @GeneratedValue
     public int getEducationId() {
         return educationId;
     }

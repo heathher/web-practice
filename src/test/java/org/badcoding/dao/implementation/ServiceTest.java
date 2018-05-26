@@ -36,4 +36,11 @@ public class ServiceTest {
         ServiceEntity deleted = serv_i.getById(index);
         assertNull(deleted);
     }
+    @Test(dependsOnMethods = "testDelete")
+    public void testGetByName() throws Exception {
+        String name = "Consultation";
+        ServiceEntity service = serv_i.getByName(name);
+        assertEquals(service.getServiceName(), name);
+    }
+
 }
