@@ -8,6 +8,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "employee", schema = "lawfirm", catalog = "")
 public class EmployeeEntity {
+    @GeneratedValue
     private int employeeId;
     private String firstname;
     private String lastname;
@@ -20,10 +21,9 @@ public class EmployeeEntity {
 
     public EmployeeEntity(){}
 
-    public EmployeeEntity(int employeeId, String firstname, String lastname,
+    public EmployeeEntity(String firstname, String lastname,
                           String mail, String phone, String address,
                           JobEntity job, EducationEntity education){
-        this.employeeId = employeeId;
         this.firstname = firstname;
         this.lastname = lastname;
         this.mail = mail;
@@ -36,7 +36,6 @@ public class EmployeeEntity {
 
     @Id
     @Column(name = "employee_id", nullable = false)
-    @GeneratedValue
     public int getEmployeeId() {
         return employeeId;
     }
@@ -143,7 +142,7 @@ public class EmployeeEntity {
         this.educationByEducationId = educationByEducationId;
     }
 
-    @OneToMany(mappedBy = "employeeByEmployeeId")
+    @OneToMany(cascade = { CascadeType.REMOVE },mappedBy = "employeeByEmployeeId")
     public Collection<SalesOrderEntity> getSalesOrdersByEmployeeId() {
         return salesOrdersByEmployeeId;
     }

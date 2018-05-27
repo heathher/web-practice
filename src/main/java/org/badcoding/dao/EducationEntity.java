@@ -6,20 +6,19 @@ import java.util.Collection;
 @Entity
 @Table(name = "education", schema = "lawfirm", catalog = "")
 public class EducationEntity {
+    @GeneratedValue
     private int educationId;
     private String grade;
     private Collection<EmployeeEntity> employeesByEducationId;
 
     public EducationEntity(){}
 
-    public EducationEntity(int educationId, String grade){
-        this.educationId = educationId;
+    public EducationEntity(String grade){
         this.grade = grade;
     }
 
     @Id
     @Column(name = "education_id", nullable = false)
-    @GeneratedValue
     public int getEducationId() {
         return educationId;
     }

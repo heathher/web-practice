@@ -6,6 +6,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "customer", schema = "lawfirm")
 public class CustomerEntity {
+    @GeneratedValue
     private int customerId;
     private String firstName;
     private String lastName;
@@ -15,9 +16,8 @@ public class CustomerEntity {
     private Collection<SalesOrderEntity> salesOrdersByCustomerId;
 
     public CustomerEntity (){}
-    public CustomerEntity(int customerId, String firstName, String lastName,
+    public CustomerEntity(String firstName, String lastName,
                           String mail, String phone, String address){
-        this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
@@ -27,7 +27,6 @@ public class CustomerEntity {
 
     @Id
     @Column(name = "customer_id", nullable = false)
-    @GeneratedValue
     public int getCustomerId() {
         return customerId;
     }
@@ -114,7 +113,7 @@ public class CustomerEntity {
 //        return result;
 //    }
 
-    @OneToMany(mappedBy = "customerByCustomerId")
+    @OneToMany(cascade = { CascadeType.REMOVE },mappedBy = "customerByCustomerId")
     public Collection<SalesOrderEntity> getSalesOrdersByCustomerId() {
         return salesOrdersByCustomerId;
     }

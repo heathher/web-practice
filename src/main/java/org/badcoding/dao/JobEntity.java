@@ -6,14 +6,14 @@ import java.util.Collection;
 @Entity
 @Table(name = "job", schema = "lawfirm", catalog = "")
 public class JobEntity {
+    @GeneratedValue
     private int jobId;
     private String function;
     private Collection<EmployeeEntity> employeesByJobId;
 
     public JobEntity(){}
 
-    public JobEntity(int jobId, String function){
-        this.jobId = jobId;
+    public JobEntity(String function){
         this.function = function;
     }
 

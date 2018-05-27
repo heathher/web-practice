@@ -8,6 +8,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "sales_order", schema = "lawfirm", catalog = "")
 public class SalesOrderEntity {
+    @GeneratedValue
     private int id;
     private Date orderDate;
     private CustomerEntity customerByCustomerId;
@@ -15,10 +16,9 @@ public class SalesOrderEntity {
     private ServiceEntity serviceByServiceId;
 
     public SalesOrderEntity(){}
-    public SalesOrderEntity(int id, CustomerEntity customer,
+    public SalesOrderEntity(CustomerEntity customer,
                             EmployeeEntity employee, ServiceEntity service,
                             Date orderDate){
-        this.id = id;
         this.orderDate = orderDate;
         this.customerByCustomerId = customer;
         this.employeeByEmployeeId = employee;
@@ -28,7 +28,6 @@ public class SalesOrderEntity {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue
     public int getId() {
         return id;
     }

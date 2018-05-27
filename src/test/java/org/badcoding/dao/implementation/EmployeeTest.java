@@ -17,7 +17,7 @@ public class EmployeeTest {
     @Test
     public void testSave() throws Exception {
         int size = emp_i.getList().size();
-        employee = new EmployeeEntity(90, "Sam", "Smith",
+        employee = new EmployeeEntity("Sam", "Smith",
                 "smith@mail.com","6648473", "Karlov st 23",
                 job, education );
         emp_i.save(employee);
@@ -27,7 +27,7 @@ public class EmployeeTest {
 
     @Test(dependsOnMethods = "testSave")
     public void testUpdate() throws Exception {
-        employee = emp_i.getById(90);
+        employee = emp_i.getById(emp_i.getList().size());
         employee.setLastname("Jackman");
         emp_i.update(employee);
         EmployeeEntity updated = emp_i.getById((employee.getEmployeeId()));
@@ -37,7 +37,7 @@ public class EmployeeTest {
     @Test(dependsOnMethods = "testUpdate")
     public void testDelete() throws Exception {
         int index = 90;
-        emp_i.delete(emp_i.getById(90   ));
+        emp_i.delete(emp_i.getById(emp_i.getList().size()   ));
         EmployeeEntity deleted = emp_i.getById(index);
         assertNull(deleted);
     }

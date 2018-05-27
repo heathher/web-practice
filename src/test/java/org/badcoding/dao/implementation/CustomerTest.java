@@ -14,7 +14,7 @@ public class CustomerTest {
     @Test
     public void testSave(){
         int size = cust_i.getList().size();
-        CustomerEntity customer = new CustomerEntity(90, "Sam", "Smith",
+        CustomerEntity customer = new CustomerEntity("Sam", "Smith",
                 "smith@mail.com", "6648473", "Karlov st 23");
         cust_i.save(customer);
         int size_insert = cust_i.getList().size();
@@ -23,7 +23,7 @@ public class CustomerTest {
 
     @Test(dependsOnMethods = {"testSave"})
     public void testUpdate() throws Exception {
-        CustomerEntity customer = cust_i.getById(90);
+        CustomerEntity customer = cust_i.getById(cust_i.getList().size());
         String newMail = "newmail@mail.com";
         customer.setMail(newMail);
         cust_i.update(customer);
@@ -33,7 +33,7 @@ public class CustomerTest {
 
     @Test(dependsOnMethods = {"testUpdate"})
     public void testDelete() throws Exception {
-        int index = 90;
+        int index = cust_i.getList().size();
         cust_i.delete(cust_i.getById(index));
         CustomerEntity deleted = cust_i.getById(index);
         assertNull(deleted);

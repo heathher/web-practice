@@ -14,7 +14,7 @@ public class JobTest {
     @Test
     public void testSave() throws Exception {
         int size = job_i.getList().size();
-        job = new JobEntity(10, "lawyer");
+        job = new JobEntity("lawyer");
         job_i.save(job);
         int inserted_size = job_i.getList().size();
         assertEquals(size+1, inserted_size);
@@ -22,7 +22,7 @@ public class JobTest {
 
     @Test(dependsOnMethods = "testSave")
     public void testUpdate() throws Exception {
-        job = job_i.getById(10);
+        job = job_i.getById(job_i.getList().size());
         job.setFunction("lawyer on phone");
         job_i.update(job);
         JobEntity updated = job_i.getById(job.getJobId());
@@ -32,7 +32,7 @@ public class JobTest {
     @Test(dependsOnMethods = "testUpdate")
     public void testDelete() throws Exception {
         int index = 10;
-        job_i.delete(job_i.getById(10));
+        job_i.delete(job_i.getById(job_i.getList().size()));
         JobEntity deleted = job_i.getById(index);
         assertNull(deleted);
     }

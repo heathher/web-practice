@@ -15,7 +15,7 @@ public class EducationTest {
     @Test
     public void testSave() throws Exception {
         int size = edu_i.getList().size();
-        education = new EducationEntity(10, "Doctor");
+        education = new EducationEntity("Doctor");
         edu_i.save(education);
         int inserted_size = edu_i.getList().size();
         assertEquals(size+1, inserted_size);
@@ -23,7 +23,7 @@ public class EducationTest {
 
     @Test(dependsOnMethods = {"testSave"})
     public void testUpdate() throws Exception {
-        education = edu_i.getById(10);
+        education = edu_i.getById(edu_i.getList().size());
         education.setGrade("Lawyer");
         edu_i.update(education);
         EducationEntity updated = edu_i.getById(education.getEducationId());
@@ -33,7 +33,7 @@ public class EducationTest {
     @Test(dependsOnMethods = {"testUpdate"})
     public void testDelete() throws Exception {
         int index = 10;
-        edu_i.delete(edu_i.getById(10));
+        edu_i.delete(edu_i.getById(edu_i.getList().size()));
         EducationEntity deleted = edu_i.getById(index);
         assertNull(deleted);
     }

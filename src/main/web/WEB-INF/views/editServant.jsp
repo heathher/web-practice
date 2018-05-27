@@ -3,9 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:include page="navigationBar.jsp" />
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="style.css" rel="stylesheet" type="text/css"/>
     <title>Edit servants page</title>
 </head>
 <body>
@@ -36,12 +38,12 @@
             <td><form:input path="mail"/></td>
         </tr>
         <tr>
-            <td><form:label path="educationByEducationId.grade">Servant's education level:</form:label></td>
-            <td><form:input path="educationByEducationId.grade"/></td>
+            <td><form:label path="educationByEducationId.educationId">Servant's education id:</form:label></td>
+            <td><form:input path="educationByEducationId.educationId"/></td>
         </tr>
         <tr>
-            <td><form:label path="jobByJobId.function">Servant's position:</form:label></td>
-            <td><form:input path="jobByJobId.function"/></td>
+            <td><form:label path="jobByJobId.jobId">Servant's position id:</form:label></td>
+            <td><form:input path="jobByJobId.jobId"/></td>
         </tr>
     </table>
 

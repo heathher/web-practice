@@ -6,20 +6,19 @@ import java.util.Collection;
 @Entity
 @Table(name = "service", schema = "lawfirm", catalog = "")
 public class ServiceEntity {
+    @GeneratedValue
     private int serviceId;
     private String serviceName;
     private int servicePrice;
     private Collection<SalesOrderEntity> salesOrdersByServiceId;
 
     public ServiceEntity(){}
-    public ServiceEntity(int serviceId, String serviceName, int servicePrice){
-        this.serviceId = serviceId;
+    public ServiceEntity(String serviceName, int servicePrice){
         this.serviceName = serviceName;
         this.servicePrice = servicePrice;
     }
     @Id
     @Column(name = "service_id", nullable = false)
-    @GeneratedValue
     public int getServiceId() {
         return serviceId;
     }

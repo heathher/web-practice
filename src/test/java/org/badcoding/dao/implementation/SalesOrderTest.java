@@ -20,7 +20,7 @@ public class SalesOrderTest {
     public void testSave() throws Exception {
         int size = sal_i.getList().size();
         Date date = new Date(2016, 3, 21);
-        salesOrder = new SalesOrderEntity(100, customer, employee, service, date);
+        salesOrder = new SalesOrderEntity(customer, employee, service, date);
         sal_i.save(salesOrder);
         int inserted_size = sal_i.getList().size();
         assertEquals(size+1, inserted_size);
@@ -29,7 +29,7 @@ public class SalesOrderTest {
     @Test(dependsOnMethods = "testSave")
     public void testUpdate() throws Exception {
         Date newDate = new Date(2017, 4, 9);
-        salesOrder = sal_i.getById(100);
+        salesOrder = sal_i.getById(sal_i.getList().size());
         salesOrder.setOrderDate(newDate);
         sal_i.update(salesOrder);
         SalesOrderEntity updated = sal_i.getById(salesOrder.getId());
@@ -38,7 +38,7 @@ public class SalesOrderTest {
 
     @Test(dependsOnMethods = "testUpdate")
     public void testDelete() throws Exception {
-        int index = 100;
+        int index = sal_i.getList().size();
         sal_i.delete(salesOrder);
         SalesOrderEntity deleted = sal_i.getById(index);
         assertNull(deleted);

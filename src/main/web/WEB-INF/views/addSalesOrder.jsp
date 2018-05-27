@@ -4,9 +4,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:include page="navigationBar.jsp" />
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="style.css" rel="stylesheet" type="text/css"/>
     <title>Adding contracts</title>
 </head>
 <body>
@@ -17,16 +19,16 @@
 <form:form modelAttribute="salesOrderAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
-            <td><form:label path="serviceByServiceId">Service id:</form:label></td>
-            <td><form:input path="serviceByServiceId"/></td>
+            <td><form:label path="serviceByServiceId.serviceId">Service id:</form:label></td>
+            <td><form:input path="serviceByServiceId.serviceId"/></td>
         </tr>
         <tr>
-            <td><form:label path="customerByCustomerId">Client's id:</form:label></td>
-            <td><form:input path="customerByCustomerId"/></td>
+            <td><form:label path="customerByCustomerId.customerId">Client's id:</form:label></td>
+            <td><form:input path="customerByCustomerId.customerId"/></td>
         </tr>
         <tr>
-            <td><form:label path="employeeByEmployeeId">Servant's id:</form:label></td>
-            <td><form:input path="employeeByEmployeeId"/></td>
+            <td><form:label path="employeeByEmployeeId.employeeId">Servant's id:</form:label></td>
+            <td><form:input path="employeeByEmployeeId.employeeId"/></td>
         </tr>
     </table>
     <input type="submit" value="Save" />

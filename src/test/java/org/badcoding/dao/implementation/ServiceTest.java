@@ -14,7 +14,7 @@ public class ServiceTest {
     @Test
     public void testSave() throws Exception {
         int size = serv_i.getList().size();
-        service = new ServiceEntity(30, "Calling", 50);
+        service = new ServiceEntity("Calling", 50);
         serv_i.save(service);
         int inserted_size = serv_i.getList().size();
         assertEquals(size+1, inserted_size);
@@ -22,7 +22,7 @@ public class ServiceTest {
 
     @Test(dependsOnMethods = "testSave")
     public void testUpdate() throws Exception {
-        service = serv_i.getById(30);
+        service = serv_i.getById(serv_i.getList().size());
         service.setServicePrice(100);
         serv_i.update(service);
         ServiceEntity updated = serv_i.getById(service.getServiceId());
@@ -31,7 +31,7 @@ public class ServiceTest {
 
     @Test(dependsOnMethods = "testUpdate")
     public void testDelete() throws Exception {
-        int index = 30;
+        int index = serv_i.getList().size();
         serv_i.delete(service);
         ServiceEntity deleted = serv_i.getById(index);
         assertNull(deleted);

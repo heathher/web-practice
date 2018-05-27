@@ -25,24 +25,27 @@ public class TestMain extends Assert{
 
     @Test
     public void addData(){
-        addCustomer(51, "Daniel", "Peters",
+        addCustomer("Daniel", "Peters",
                 "dhs@mail.com", "5393323", "jdf" );
-        addCustomer(52, "Dan", "Stone",
+        addCustomer("Dan", "Stone",
                 "lkkj@mail.com", "74365", "sdgfg" );
-        addEmployee(51, "Michael", "Jackson",
+        addEmployee("Michael", "Jackson",
                 "sdjfhs@mail.com", "483504", "jdf" , 2, 3);
-        addEmployee(52, "Mickey", "Mouse",
+        addEmployee("Mickey", "Mouse",
                 "lsjflhs@mail.com", "3454504", "jdf" , 2, 2);
-        addSalesOrder(156, 1, 1, 2, Date.valueOf("2016-04-04"));
+        addSalesOrder(1, 1, 2, Date.valueOf("2016-04-04"));
     }
 
     @AfterClass
     public void removeData(){
-        removeCustomer(51);
-        removeCustomer(52);
-        removeEmployee(51);
-        removeEmployee(52);
-        removeSalesOrder(156);
+        CustomerImplementation cust_i = new CustomerImplementation();
+        EmployeeImplementation emp_i = new EmployeeImplementation();
+        SalesOrderImplementation sal_i = new SalesOrderImplementation();
+        removeCustomer(cust_i.getList().size());
+        removeCustomer(cust_i.getList().size()-1);
+        removeEmployee(emp_i.getList().size());
+        removeEmployee(emp_i.getList().size()-1);
+        removeSalesOrder(sal_i.getList().size());
     }
 
 
@@ -70,19 +73,19 @@ public class TestMain extends Assert{
     }
 
     // add customer or employee
-    public void addCustomer(int customer_id, String firstName, String lastName,
+    public void addCustomer(String firstName, String lastName,
                             String mail, String phone,
                             String address){
-        CustomerEntity customer = new CustomerEntity(customer_id, firstName, lastName, mail, phone, address);
+        CustomerEntity customer = new CustomerEntity(firstName, lastName, mail, phone, address);
         CustomerImplementation cust_i = new CustomerImplementation();
         cust_i.save(customer);
     }
-    public void addEmployee(int employee_id, String firstname, String lastname,
+    public void addEmployee(String firstname, String lastname,
                             String mail, String phone, String address,
                             Integer job_id, Integer education_id){
         JobEntity job = new JobImplementation().getById(job_id);
         EducationEntity education = new EducationImplementation().getById(education_id);
-        EmployeeEntity employee = new EmployeeEntity(employee_id, firstname, lastname,
+        EmployeeEntity employee = new EmployeeEntity(firstname, lastname,
                 mail, phone, address, job, education);
         EmployeeImplementation emp_i = new EmployeeImplementation();
         emp_i.save(employee);
@@ -102,14 +105,14 @@ public class TestMain extends Assert{
     public void updateCustomer(int customer_id, String firstName, String lastName,
                                String mail, String phone,
                                String address){
-        CustomerEntity customer = new CustomerEntity(customer_id, firstName, lastName, mail, phone, address);
+        CustomerEntity customer = new CustomerEntity(firstName, lastName, mail, phone, address);
         CustomerImplementation cust_i = new CustomerImplementation();
         cust_i.update(customer);
     }
     public void updateEmployee(int employee_id, String firstname, String lastname,
                                String mail, String phone, String address,
                                JobEntity job, EducationEntity education){
-        EmployeeEntity employee = new EmployeeEntity(employee_id, firstname, lastname,
+        EmployeeEntity employee = new EmployeeEntity(firstname, lastname,
                 mail, phone, address, job, education);
         EmployeeImplementation emp_i = new EmployeeImplementation();
         emp_i.update(employee);
@@ -128,13 +131,13 @@ public class TestMain extends Assert{
     }
 
     // add sales order
-    public void addSalesOrder(int id, Integer customer_id,
+    public void addSalesOrder(Integer customer_id,
                               Integer employee_id, Integer service_id,
                               Date orderDate){
         CustomerEntity customer = new CustomerImplementation().getById(customer_id);
         EmployeeEntity employee = new EmployeeImplementation().getById(employee_id);
         ServiceEntity service = new ServiceImplementation().getById(service_id);
-        SalesOrderEntity salesOrder = new SalesOrderEntity(id, customer, employee,
+        SalesOrderEntity salesOrder = new SalesOrderEntity(customer, employee,
                 service, orderDate);
         SalesOrderImplementation sal_i = new SalesOrderImplementation();
         sal_i.save(salesOrder);
