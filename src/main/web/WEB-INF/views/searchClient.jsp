@@ -13,9 +13,8 @@
 </head>
 <body>
 
-<h1>Searching clients</h1>
+<h1><b>Searching clients</b></h1>
 <h2>Write searching options (leave blank, what's not needed)</h2>
-<h2>Write date in yyyy-mm-dd format</h2>
 
 <c:url var="saveUrl" value="/main/clients/search" />
 <form:form modelAttribute="pairAttribute" method="POST" action="${saveUrl}">
@@ -25,40 +24,12 @@
             <td><form:input path="serviceByServiceId.serviceId"/></td>
         </tr>
         <tr>
-            <td><form:label path="customerByCustomerId.customerId">Client's id:</form:label></td>
-            <td><form:input path="customerByCustomerId.customerId"/></td>
-        </tr>
-        <tr>
             <td><form:label path="employeeByEmployeeId.employeeId">Servant's id:</form:label></td>
             <td><form:input path="employeeByEmployeeId.employeeId"/></td>
-        </tr>
-        <tr>
-            <td><form:label path="orderDate">End date:</form:label></td>
-            <td><form:input path="orderDate"/></td>
         </tr>
     </table>
     <input type="submit" value="Search" />
 </form:form>
-
-<h1 style="margin-left: 50px">Client</h1>
-
-<table style="margin-left: 50px; width: 700px; text-align:center; border-collapse: collapse; ">
-    <thead style="background:#fcf">
-    <tr >
-        <th >Id</th>
-        <th >Name</th>
-        <th colspan="3"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${clientsList1}" var="elem">
-        <tr>
-            <td><c:out value="${elem.customerId}" /></td>
-            <td><c:out value="${elem.lastName} ${elem.firstName}" /></td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
 
 <h1 style="margin-left: 50px">Servant</h1>
 <table style="margin-left: 50px; width: 700px; text-align:center; border-collapse: collapse; ">
@@ -66,7 +37,6 @@
     <tr >
         <th >Id</th>
         <th >Name</th>
-        <th colspan="6"></th>
     </tr>
     </thead>
     <tbody>
@@ -86,7 +56,6 @@
     <tr >
         <th >Id</th>
         <th >Function</th>
-        <th colspan="6"></th>
     </tr>
     </thead>
     <tbody>

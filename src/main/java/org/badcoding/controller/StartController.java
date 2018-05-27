@@ -156,6 +156,10 @@ public class StartController {
 
     @RequestMapping(value = "/servants/add", method = RequestMethod.GET)
     public String getAddServant(Model model) {
+        List<JobEntity> job = jobdao.getList();
+        model.addAttribute("job1", job);
+        List<EducationEntity> education = educationdao.getList();
+        model.addAttribute("education1", education);
         model.addAttribute("servantAttribute", new EmployeeEntity());
         return "addServant";
     }
@@ -181,6 +185,10 @@ public class StartController {
     @RequestMapping(value = "/servants/edit", method = RequestMethod.GET)
     public String getEditServant(@RequestParam(value="id") Integer id,
                                  Model model) throws SQLException {
+        List<JobEntity> job = jobdao.getList();
+        model.addAttribute("job", job);
+        List<EducationEntity> education = educationdao.getList();
+        model.addAttribute("education", education);
         model.addAttribute("servantAttribute", employeedao.getById(id));
         return "editServant";
     }
@@ -208,24 +216,30 @@ public class StartController {
         model.addAttribute("servicesList1", services);
 
         model.addAttribute("pairAttribute", new SalesOrderEntity());
+        model.addAttribute("startDate", new String());
+        model.addAttribute("endDate", new String());
         return "searchClient";
     }
 
     @RequestMapping(value = "/clients/search", method = RequestMethod.POST)
     public String SearchClient(@ModelAttribute("pairAttribute") SalesOrderEntity order,
+                               @ModelAttribute("startDate") String startDate,
+                               @ModelAttribute("endDate") String endDate,
                                Model model) throws SQLException,ParseException {
-        List<SalesOrderEntity> clients = salesOrderdao.getByFilters(order.getCustomerByCustomerId().getCustomerId()==0?null:customerdao.getById(order.getCustomerByCustomerId().getCustomerId()).getCustomerId(),
-                order.getEmployeeByEmployeeId().getEmployeeId()==0?null:employeedao.getById(order.getEmployeeByEmployeeId().getEmployeeId()).getEmployeeId(),
-                order.getServiceByServiceId().getServiceId()==0?null:servicedao.getById(order.getServiceByServiceId().getServiceId()).getServiceId(),
-                new java.sql.Date(1990-1-1), order.getOrderDate());
-        model.addAttribute("contracts", clients);
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        List<CustomerEntity> clients = customerdao.getByParameters(startDate.equals("")?null:new java.sql.Date(format.parse(startDate).getTime()),
+                endDate.equals("")?null:new java.sql.Date(format.parse(endDate).getTime()), order.getEmployeeByEmployeeId().getEmployeeId()==0?null:order.getEmployeeByEmployeeId().getEmployeeId(),
+                order.getServiceByServiceId().getServiceId()==0?null:order.getServiceByServiceId().getServiceId());
+        model.addAttribute("clients", clients);
         model.addAttribute("searched",true);
-        return "start";
+        return "clients";
     }
 
     @RequestMapping(value = "/servants/search", method = RequestMethod.GET)
     public String getSearchServant(Model model) {
         model.addAttribute("pairAttribute", new SalesOrderEntity());
+        model.addAttribute("startDate", new String());
+        model.addAttribute("endDate", new String());
         List<CustomerEntity> clients = customerdao.getList();
         model.addAttribute("clientsList2", clients);
         List<EmployeeEntity> servants = employeedao.getList();
@@ -237,13 +251,14 @@ public class StartController {
 
     @RequestMapping(value = "/servants/search", method = RequestMethod.POST)
     public String SearchServant(@ModelAttribute("pairAttribute") SalesOrderEntity order,
+                                @ModelAttribute("startDate") String startDate,
+                                @ModelAttribute("endDate") String endDate,
                                 Model model) throws SQLException,ParseException {
         DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
-        List<SalesOrderEntity> servants = salesOrderdao.getByFilters(order.getCustomerByCustomerId().getCustomerId()==0?null:customerdao.getById(order.getCustomerByCustomerId().getCustomerId()).getCustomerId(),
-                order.getEmployeeByEmployeeId().getEmployeeId()==0?null:employeedao.getById(order.getEmployeeByEmployeeId().getEmployeeId()).getEmployeeId(),
-                order.getServiceByServiceId().getServiceId()==0?null:servicedao.getById(order.getServiceByServiceId().getServiceId()).getServiceId(),
-                new java.sql.Date(1990-1-1), order.getOrderDate());
+        List<EmployeeEntity> servants = employeedao.getByParameters(startDate.equals("")?null:new java.sql.Date(format.parse(startDate).getTime()),
+                endDate.equals("")?null:new java.sql.Date(format.parse(endDate).getTime()), order.getCustomerByCustomerId().getCustomerId()==0?null:order.getCustomerByCustomerId().getCustomerId(),
+                order.getServiceByServiceId().getServiceId()==0?null:order.getServiceByServiceId().getServiceId());
 
         model.addAttribute("servants", servants);
         model.addAttribute("searched",true);

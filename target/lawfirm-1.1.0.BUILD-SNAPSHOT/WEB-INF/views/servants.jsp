@@ -10,7 +10,7 @@
     <title>Main page</title>
 </head>
 <body>
-<h1 style="margin-left: 50px">Servant</h1>
+<h1 style="margin-left: 50px"><b>Servant</b></h1>
 
 <table style="margin-left: 50px; width: 700px; text-align:center; border-collapse: collapse; ">
     <thead style="background:#fcf">
@@ -21,7 +21,6 @@
         <th >E-mail</th>
         <th >Education level</th>
         <th >Position</th>
-        <th colspan="6"></th>
     </tr>
     </thead>
     <tbody>

@@ -10,13 +10,15 @@
     <title>Main page</title>
 </head>
 <body>
-<h1 style="margin-left: 50px">Client</h1>
+<h1 style="margin-left: 50px"><b>Client</b></h1>
 
 <table style="margin-left: 50px; width: 700px; text-align:center; border-collapse: collapse; ">
     <thead style="background:#fcf">
     <tr >
         <th >Name</th>
-        <th colspan="3"></th>
+        <th >Mail</th>
+        <th >Phone</th>
+        <th >Address</th>
     </tr>
     </thead>
     <tbody>

@@ -7,10 +7,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="style.css" rel="stylesheet" type="text/css"/>
+    <link href="bootstrap.css" rel="stylesheet" type="text/css"/>
     <title>Main page</title>
 </head>
 <body>
-<h1 style="margin-left: 50px">Contract</h1>
+<h1 align="center" style="margin-left: 50px"><b>Law Firm</b></h1>
+<h1 style="margin-left: 50px"><b>Contracts</b></h1>
 
 <table style="margin-left: 50px; width: 700px; text-align:center; border-collapse: collapse; ">
     <thead style="background:#fcf">
@@ -38,7 +40,8 @@
                 </a>
             </td>
             <td style="background-color: indianred;width: 100px; padding:0px">
-                <a style="color: white;text-decoration: none;display: block; padding: 9px" href="${deleteUrl}">
+                <a style="color: white;text-decoration: none;display: block; padding: 9px" href="${deleteUrl}" onclick="return confirm('Are you sure you want to delete ' +
+                 'contract?')">
                     Delete
                 </a>
             </td>
@@ -51,7 +54,7 @@
 
 <c:url var="addUrl" value="/main/start/add" />
 <nav style="background-color: indianred; width: 10%; margin-left: 50px; margin-top: 10px;">
-    <li><a style="color: #ffffff; display: inline-block; line-height: 2em;padding: 0.5em 2em;
+    <li ><a style="color: #ffffff; display: inline-block; line-height: 2em;padding: 0.5em 2em;
     text-decoration: blink;" href="${addUrl}">Add Contract</a></li>
 </nav>
 

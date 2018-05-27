@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style type="text/css">
         <%@include file="style.css" %>
+        <%--<%@include file="bootstrap.css" %>--%>
     </style>
 </head>
 <body>
@@ -18,7 +19,7 @@
 <c:url var="searchServantUrl" value="/main/servants/search" />
 <nav>
     <ul>
-        <li><a href="${newsUrl}">Main page</a></li>
+        <li><a href="${newsUrl}">Contracts</a></li>
         <li><a href="${clientUrl}">Clients</a></li>
         <li><a href="${servantUrl}">Servants</a></li>
         <li><a href="${searchClientUrl}">Search clients</a></li>

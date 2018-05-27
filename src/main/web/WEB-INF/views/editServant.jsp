@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<h1>Edit Servant</h1>
+<h1><b>Edit Servant</b></h1>
 
 <c:url var="saveUrl" value="/main/servants/edit?id=${servantAttribute.employeeId}" />
 <form:form modelAttribute="servantAttribute" method="POST" action="${saveUrl}">
@@ -49,6 +49,42 @@
 
     <input type="submit" value="Save" />
 </form:form>
+
+<h1 style="margin-left: 50px">Job</h1>
+<table style="margin-left: 50px; width: 700px; text-align:center; border-collapse: collapse; ">
+    <thead style="background:#fcf">
+    <tr >
+        <th >Id</th>
+        <th >Function</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${job}" var="elem2">
+        <tr>
+            <td><c:out value="${elem2.jobId}" /></td>
+            <td><c:out value="${elem2.function}" /></td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+
+<h1 style="margin-left: 50px">Education</h1>
+<table style="margin-left: 50px; width: 700px; text-align:center; border-collapse: collapse; ">
+    <thead style="background:#fcf">
+    <tr >
+        <th >Id</th>
+        <th >Grade</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${education}" var="elem2">
+        <tr>
+            <td><c:out value="${elem2.educationId}" /></td>
+            <td><c:out value="${elem2.grade}" /></td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
 
 </body>
 </html>

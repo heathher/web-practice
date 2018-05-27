@@ -1,12 +1,16 @@
 package org.badcoding.dao.implementation;
 
 import org.badcoding.dao.CustomerEntity;
+import org.badcoding.dao.EmployeeEntity;
+import org.badcoding.dao.ServiceEntity;
 import org.badcoding.dao.interfaces.CustomerInterface;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.badcoding.utils.HibernateSessionFact;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -160,5 +164,48 @@ public class CustomerImplementation implements CustomerInterface{
             }
         }
         return result;
+    }
+
+    public List<CustomerEntity> getByParameters(Date time_start, Date time_end, Integer employeeId,
+                                                Integer serviceId) throws SQLException {
+        Session session = HibernateSessionFact.getSessionFactory().openSession();
+        session.beginTransaction();
+        boolean first=true;
+        String string="select distinct b from CustomerEntity b, SalesOrderEntity order inner join b.salesOrdersByCustomerId contract ";
+        string+="where ";
+        if (time_start!=null) {
+            string+="contract.orderDate >= :time_start ";
+            first=false;
+        }
+        if (time_end!=null) {
+            if (!first)
+                string+="and ";
+            string+="(contract.orderDate=null or contract.orderDate <= :time_end) ";
+            first=false;
+        }
+        if (employeeId!=null) {
+            if (!first)
+                string+="and ";
+            string+="contract.employeeByEmployeeId.employeeId = :employeeId ";
+            first=false;
+        }
+        if (serviceId!=null) {
+            if (!first)
+                string+="and ";
+            string+="contract.serviceByServiceId.serviceId = :serviceId ";
+            first=false;
+        }
+        if (first)
+            string="FROM CustomerEntity ";
+        Query query = session.createQuery(string);
+        if (time_start!=null)
+            query.setParameter("time_start",time_start);
+        if (time_end!=null)
+            query.setParameter("time_end",time_end);
+        if (employeeId!=null)
+            query.setParameter("employeeId",employeeId);
+        if (serviceId!=null)
+            query.setParameter("serviceId",serviceId);
+        return query.list();
     }
 };

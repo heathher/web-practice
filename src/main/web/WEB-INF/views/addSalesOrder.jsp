@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<h1>Create Contract</h1>
+<h1><b>Create Contract</b></h1>
 
 <c:url var="saveUrl" value="/main/start/add" />
 <form:form modelAttribute="salesOrderAttribute" method="POST" action="${saveUrl}">
@@ -41,7 +41,6 @@
     <tr >
         <th >Id</th>
         <th >Name</th>
-        <th colspan="3"></th>
     </tr>
     </thead>
     <tbody>
@@ -60,7 +59,6 @@
     <tr >
         <th >Id</th>
         <th >Name</th>
-        <th colspan="6"></th>
     </tr>
     </thead>
     <tbody>
@@ -80,7 +78,6 @@
     <tr >
         <th >Id</th>
         <th >Function</th>
-        <th colspan="6"></th>
     </tr>
     </thead>
     <tbody>

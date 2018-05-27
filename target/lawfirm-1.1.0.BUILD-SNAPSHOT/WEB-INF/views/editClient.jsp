@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<h1>Edit Client</h1>
+<h1><b>Edit Client</b></h1>
 
 <c:url var="saveUrl" value="/main/clients/edit?id=${clientAttribute.customerId}" />
 <form:form modelAttribute="clientAttribute" method="POST" action="${saveUrl}">

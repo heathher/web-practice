@@ -9,12 +9,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="style.css" rel="stylesheet" type="text/css"/>
     <title>Edit contracts page</title>
-    <h2>Write date in yyyy-mm-dd format</h2>
 </head>
 <body>
 
 
-<h1>Edit Contract</h1>
+<h1><b>Edit Contract</b></h1>
+<h2>Write date in yyyy-mm-dd format</h2>
 <c:url var="saveUrl" value="/main/start/edit?id=${salesOrderAttribute.id}" />
 <form:form modelAttribute="salesOrderAttribute" method="POST" action="${saveUrl}">
     <table>
@@ -45,7 +45,6 @@
     <tr >
         <th >Id</th>
         <th >Name</th>
-        <th colspan="3"></th>
     </tr>
     </thead>
     <tbody>
@@ -64,7 +63,6 @@
     <tr >
         <th >Id</th>
         <th >Name</th>
-        <th colspan="6"></th>
     </tr>
     </thead>
     <tbody>
@@ -84,7 +82,6 @@
     <tr >
         <th >Id</th>
         <th >Function</th>
-        <th colspan="6"></th>
     </tr>
     </thead>
     <tbody>
